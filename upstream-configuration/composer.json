@@ -1,5 +1,5 @@
 {
-    "name": "backoffice/bot-wp-custom",
+    "name": "pantheon-upstreams/upstream-configuration",
     "type": "project",
     "version": "dev-main",
     "repositories": [
