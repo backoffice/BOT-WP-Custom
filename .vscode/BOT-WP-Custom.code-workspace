@@ -1,0 +1,49 @@
+{
+    "folders": [
+        {
+            "path": "..",
+            "name": "BOT-WP-Custom"
+        }
+    ],
+    "settings": {
+        "github.copilot.enable": {
+            "*": true,
+            "plaintext": false,
+            "markdown": true,
+            "python": true
+        },
+        "github.copilot.advanced": {
+            "inlineSuggestCount": 3
+        },
+        "github.copilot.chat.codeGeneration.useInstructionFiles": true,
+        "github.copilot.chat.codeGeneration.instructions": [
+            {
+                "file": "/.github/instructions/main.instructions.md"
+            }
+        ],
+        "github.copilot.chat.testGeneration.instructions": [
+            {
+                "text": "Follow Python unittest patterns and FastMCP testing conventions"
+            }
+        ],
+        "github.copilot.chat.reviewSelection.instructions": [
+            {
+                "text": "Ensure code follows FastMCP patterns and async conventions"
+            }
+        ],
+        "files.watcherExclude": {
+            "**/.git/objects/**": true,
+            "**/.git/subtree-cache/**": true,
+            "**/node_modules/**": true,
+            "**/vendor/**": true,
+            "**/dist/**": true,
+            "**/.DS_Store": true
+        }
+    },
+    "extensions": {
+        "recommendations": [
+            "github.copilot",
+            "github.copilot-chat"
+        ]
+    }
+}

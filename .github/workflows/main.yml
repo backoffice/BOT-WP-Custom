@@ -1,0 +1,66 @@
+name: Main Flow
+on:
+  schedule:
+   - cron: "0 4 * * *"
+
+env:
+  branch: "main"
+  php-version: 8.2
+  extensions: "mbstring, sodium, zip"
+  safedir: "${{ github.workspace }}:/app"
+  dependencies: "highest"
+  composeroptions: "--prefer-stable"
+  workingdir: "upstream-configuration"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Daily Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          set-safe-directory: "${{ env.safedir }}"
+
+      - name: Setup PHP Action
+        uses: shivammathur/setup-php@2.31.1
+        with:
+          php-version: "${{ env.php-version }}"
+          extensions: "${{ env.extensions }}"
+
+      # Install dependencies using composer.json in src/Component/Config/
+      - name: Composer Install
+        uses: "ramsey/composer-install@v3"
+        with:
+          working-directory: "${{ env.workingdir }}"
+          dependency-versions: "${{ env.dependencies }}"
+        #   composer-options: "${{ env.composeroptions }}"
+
+      - name: Set composer.json to new versions
+        id: auto-commit-test
+        uses: php-actions/composer@v6
+        with:
+          command: bump
+          working_dir: "${{ env.workingdir }}"
+
+      - name: Clean secret management files
+        id: clean-files
+        run: |
+          rm -rf \
+            ${{ env.safedir }}/vendor \
+            ${{ env.safedir }}/${{ env.workingdir }}/vendor \
+            ${{ env.safedir }}/composer.lock \
+            ${{ env.safedir }}/${{ env.workingdir }}/composer.lock \
+            ${{ env.workingdir }}/composer.lock
+
+      - name: Commit files and push it
+        if: steps.auto-commit-test.outputs.changes_detected == 'true'
+        run: |
+          git config --global user.email "jdelong@backofficethinking.com"
+          git config --global user.name "Jeremy DeLong"
+          git add .
+          git commit -m "auto update"
+          git push
+
+
