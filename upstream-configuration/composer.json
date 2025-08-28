@@ -2,12 +2,21 @@
     "name": "pantheon-upstreams/upstream-configuration",
     "type": "project",
     "version": "dev-main",
-    "repositories": [
-        {
+    "repositories": {
+        "satispress": {
+            "type": "composer",
+            "url": "https://dev-bot-satispress.pantheonsite.io/satispress/",
+            "options": {
+                "http": {
+                    "header": ["Deterrence-Bypass: 1"]
+                }
+            }
+        },
+        "wppackagist": {
             "type": "composer",
             "url": "https://wpackagist.org"
         }
-    ],
+    },
     "require": {
         "wordpress-premium/advanced-custom-fields-pro": "^6.0.0-beta1",
         "wpackagist-plugin/akismet": "^5.0.1",
@@ -38,6 +47,12 @@
         "wpackagist-plugin/wp-cfm": "^1.7.5",
         "wpackagist-plugin/wp-megamenu": "^1.4.2",
         "wpackagist-plugin/wp-smushit": "^3.12.3",
-        "wpackagist-theme/twentynineteen": "^1.2"
+        "wpackagist-theme/twentynineteen": "^1.2",
+        "backoffice/advanced-custom-fields-pro": "^6.4"
+    },
+    "config": {
+        "allow-plugins": {
+            "composer/installers": true
+        }
     }
 }
