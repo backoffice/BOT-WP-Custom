@@ -52,8 +52,6 @@
         "backoffice/search-filter-pro": "^2.5"
     },
     "config": {
-        "allow-plugins": {
-            "composer/installers": true
-        }
+        "allow-plugins": true
     }
 }
