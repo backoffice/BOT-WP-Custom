@@ -161,3 +161,8 @@ Thumbs.db
 # SASS #
 ##########
 .sass-cache
+
+# AI Related Files #
+####################
+.github/instructions
+
