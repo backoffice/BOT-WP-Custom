@@ -47,7 +47,9 @@
         "wpackagist-plugin/wp-megamenu": "^1.4.2",
         "wpackagist-plugin/wp-smushit": "^3.12.3",
         "wpackagist-theme/twentynineteen": "^1.2",
-        "backoffice/advanced-custom-fields-pro": "^6.4"
+        "backoffice/advanced-custom-fields-pro": "^6.4",
+        "backoffice/pt-content-views-pro": "^7.1",
+        "backoffice/search-filter-pro": "^2.5"
     },
     "config": {
         "allow-plugins": {
