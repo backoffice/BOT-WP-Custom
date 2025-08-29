@@ -17,15 +17,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      - name: Show composer.json
-        run: cat composer.json
-        working-directory: "${{ env.workingdir }}"
-        
       - name: Daily Checkout
         uses: actions/checkout@v4
         with:
           ref: ${{ github.head_ref }}
           set-safe-directory: "${{ env.safedir }}"
+
+      - name: Show composer.json
+        run: cat composer.json
+        working-directory: "${{ env.workingdir }}"
+
+      - name: Show auth.json
+        run: cat auth.json
+        working-directory: "${{ env.workingdir }}"
 
       - name: Setup PHP Action
         uses: shivammathur/setup-php@2.31.1
