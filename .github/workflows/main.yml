@@ -17,10 +17,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      - name: Ensure composer/installers plugin allowed
-        run: composer config --no-plugins allow-plugins.composer/installers true
-        working-directory: "${{ env.workingdir }}"
-
       - name: Show composer.json
         run: cat composer.json
         working-directory: "${{ env.workingdir }}"
