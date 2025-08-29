@@ -6,7 +6,7 @@ on:
 env:
   branch: "main"
   php-version: 8.2
-  extensions: "mbstring, sodium, zip"
+  extensions: "mbstring, sodium, zip, json"
   safedir: "${{ github.workspace }}:/app"
   dependencies: "highest"
   composeroptions: "--prefer-stable"
@@ -43,7 +43,7 @@ jobs:
         with:
           working-directory: "${{ env.workingdir }}"
           dependency-versions: "${{ env.dependencies }}"
-        #   composer-options: "${{ env.composeroptions }}"
+          composer-options: "${{ env.composeroptions }}"
 
       - name: Set composer.json to new versions
         id: auto-commit-test
