@@ -55,6 +55,15 @@
         {
             "type": "path",
             "url": "upstream-configuration"
+        },
+        {
+            "type": "composer",
+            "url": "https://dev-bot-satispress.pantheonsite.io/satispress/",
+            "options": {
+                "http": {
+                    "header": ["Deterrence-Bypass: 1"]
+                }
+            }
         }
     ],
     "require": {
@@ -131,7 +140,8 @@
         "test": [],
         "post-update-cmd": [
             "WordPressComposerManaged\\ComposerScripts::postUpdate",
-            "@maybe-add-symlinks"
+            "@maybe-add-symlinks",
+            "@maybe-create-symlinks"
         ]
     },
     "suggest": {
