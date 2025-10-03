@@ -1,12 +1,16 @@
-name: Main Flow
+# DISABLED: Replaced by dependabot configuration
+# This workflow is disabled to prevent conflicts with dependabot
+# which now handles package updates via pull requests for better review process
+name: Weekly Composer Bump
 on:
   schedule:
-   - cron: "0 4 * * *"
+   - cron: "0 4 * * 3" # Wednesday at 4am UTC
+  workflow_dispatch: # Allow manual triggering if needed
 
 env:
   branch: "main"
   php-version: 8.2
-  extensions: "mbstring, sodium, zip, json"
+  extensions: "mbstring, sodium, zip"
   safedir: "${{ github.workspace }}:/app"
   dependencies: "highest"
   composeroptions: "--prefer-stable"
@@ -23,14 +27,6 @@ jobs:
           ref: ${{ github.head_ref }}
           set-safe-directory: "${{ env.safedir }}"
 
-      - name: Show composer.json
-        run: cat composer.json
-        working-directory: "${{ env.workingdir }}"
-
-      - name: Show auth.json
-        run: cat auth.json
-        working-directory: "${{ env.workingdir }}"
-
       - name: Setup PHP Action
         uses: shivammathur/setup-php@2.31.1
         with:
@@ -43,15 +39,20 @@ jobs:
         with:
           working-directory: "${{ env.workingdir }}"
           dependency-versions: "${{ env.dependencies }}"
-          composer-options: "${{ env.composeroptions }}"
-          ignore-cache: "yes"
+        #   composer-options: "${{ env.composeroptions }}"
 
-      - name: Set composer.json to new versions
-        id: auto-commit-test
+      - name: Set upstream-configuration composer.json to new versions
+        id: auto-commit-upstream
         uses: php-actions/composer@v6
         with:
           command: bump
           working_dir: "${{ env.workingdir }}"
+
+      - name: Set root composer.json to new versions  
+        id: auto-commit-root
+        uses: php-actions/composer@v6
+        with:
+          command: bump
 
       - name: Clean secret management files
         id: clean-files
@@ -64,7 +65,7 @@ jobs:
             ${{ env.workingdir }}/composer.lock
 
       - name: Commit files and push it
-        if: steps.auto-commit-test.outputs.changes_detected == 'true'
+        if: steps.auto-commit-upstream.outputs.changes_detected == 'true' || steps.auto-commit-root.outputs.changes_detected == 'true'
         run: |
           git config --global user.email "jdelong@backofficethinking.com"
           git config --global user.name "Jeremy DeLong"
