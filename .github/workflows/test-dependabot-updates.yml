@@ -5,6 +5,7 @@ on:
     branches: [main]
     # Only run on dependabot PRs
     types: [opened, synchronize, reopened]
+  # Trigger workflow test
 
 env:
   php-version: 8.2
