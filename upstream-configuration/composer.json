@@ -49,7 +49,12 @@
         "wpackagist-theme/twentynineteen": "^1.9",
         "backoffice/advanced-custom-fields-pro": "^6.4.3",
         "backoffice/pt-content-views-pro": "^7.1",
-        "backoffice/search-filter-pro": "^2.5.16"
+        "backoffice/search-filter-pro": "^2.5.16",
+        "wpackagist-plugin/ninja-forms": "3.13.0",
+        "wpackagist-plugin/ga-google-analytics": "20250326",
+        "wpackagist-plugin/cleantalk-spam-protect": "6.66",
+        "wpackagist-plugin/mailin": "3.2.8",
+        "wpackagist-plugin/weglot": "5.2"
     },
     "config": {
         "allow-plugins": true,
