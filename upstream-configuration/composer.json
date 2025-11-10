@@ -25,7 +25,7 @@
         "wpackagist-plugin/duplicate-page": "^4.5.5",
         "wpackagist-plugin/duracelltomi-google-tag-manager": "^1.22.1",
         "wpackagist-plugin/easy-smooth-scroll-links": "^2.23.1",
-        "wpackagist-plugin/enable-media-replace": "^4.1.7",
+        "wpackagist-plugin/enable-media-replace": "4.1.7",
         "wpackagist-plugin/filebird": "*",
         "wpackagist-plugin/font-awesome": "^4.5.0",
         "wpackagist-plugin/gdpr-cookie-compliance": "^4.16.1",
@@ -37,7 +37,7 @@
         "wpackagist-plugin/modal-block": "^2.1",
         "wpackagist-plugin/pods": "^3.3.4",
         "wpackagist-plugin/popup-anything-on-click": "^2.8.9",
-        "wpackagist-plugin/redirection": "^5.5.2",
+        "wpackagist-plugin/redirection": "5.5.2",
         "wpackagist-plugin/search-filter": "^1.2.18",
         "wpackagist-plugin/socialsnap": "^1.4",
         "wpackagist-plugin/svg-support": "^2.5.14",
@@ -54,7 +54,9 @@
         "wpackagist-plugin/ga-google-analytics": "20250326",
         "wpackagist-plugin/cleantalk-spam-protect": "6.66",
         "wpackagist-plugin/mailin": "3.2.8",
-        "wpackagist-plugin/weglot": "5.2"
+        "wpackagist-plugin/weglot": "5.2",
+        "wpackagist-plugin/wordfence": "8.1.1",
+        "wpackagist-plugin/google-site-kit": "1.164.0"
     },
     "config": {
         "allow-plugins": true,

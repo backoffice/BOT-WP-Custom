@@ -58,7 +58,7 @@
         },
         {
             "type": "composer",
-            "url": "https://dev-bot-satispress.pantheonsite.io/satispress/",
+            "url": "https://pWcTYKyWovc2BL3EjlHpSwdGTUZVvdsm:satispress@dev-bot-satispress.pantheonsite.io/satispress/",
             "options": {
                 "http": {
                     "header": ["Deterrence-Bypass: 1"]
