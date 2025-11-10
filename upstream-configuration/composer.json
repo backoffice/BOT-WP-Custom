@@ -55,7 +55,7 @@
         "wpackagist-plugin/cleantalk-spam-protect": "6.66",
         "wpackagist-plugin/mailin": "3.2.8",
         "wpackagist-plugin/weglot": "5.2",
-        "wpackagist-plugin/wordfence": "8.1.0",
+        "wpackagist-plugin/wordfence": "8.1.1",
         "wpackagist-plugin/google-site-kit": "1.164.0"
     },
     "config": {
