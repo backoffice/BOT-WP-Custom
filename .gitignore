@@ -34,6 +34,7 @@ web/wp-*
 !web/wp-config.php
 !web/wp-config-pantheon.php
 web/xmlrpc.php
+patches.lock.json 
 
 # Logfiles should always be ignored.
 *.log
