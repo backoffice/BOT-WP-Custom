@@ -94,7 +94,7 @@
         "process-timeout": 300,
         "allow-plugins": true,
         "platform": {
-            "php": "8.2"
+            "php": "8.3.14"
         }
     },
     "minimum-stability": "dev",
