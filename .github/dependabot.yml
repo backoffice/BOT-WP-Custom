@@ -1,10 +1,10 @@
-# Dependabot configuration for WordPress Bedrock framework
+# Dependabot configuration for Pantheon Custom Upstream
 # Monitors both root composer.json and upstream-configuration directory
 # https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
 
 version: 2
 updates:
-  # Root composer.json - Bedrock core dependencies and framework
+  # Root composer.json - WordPress Core, Bedrock framework, Pantheon platform
   - package-ecosystem: "composer"
     directory: "/"
     schedule:
@@ -22,11 +22,21 @@ updates:
       platform-and-tools:
         patterns:
           - "pantheon-systems/*"
-          - "pantheon-upstreams/*"
           - "composer/*"
           - "cweagans/*"
           - "vlucas/*"
           - "oscarotero/*"
+
+  # Upstream-configuration composer.json - WordPress plugins and themes
+  - package-ecosystem: "composer"
+    directory: "/upstream-configuration"
+    schedule:
+      interval: "weekly"
+      day: "thursday"
+      time: "04:00"
+      timezone: "America/New_York"
+    versioning-strategy: increase
+    groups:
       wordpress-plugins:
         patterns:
           - "wpackagist-plugin/*"

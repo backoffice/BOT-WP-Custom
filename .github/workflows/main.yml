@@ -1,17 +1,17 @@
-# DISABLED: Replaced by dependabot configuration
-# This workflow is disabled to prevent conflicts with dependabot
-# which now handles package updates via pull requests for better review process
+# Automated weekly composer baseline updates
+# Sets baseline versions in both root and upstream-configuration before Dependabot runs
+# Dependabot will then propose updates from these baselines
 name: Weekly Composer Bump
+
 on:
   schedule:
-   - cron: "0 4 * * 3" # Wednesday at 4am UTC
-  workflow_dispatch: # Allow manual triggering if needed
+   - cron: "0 4 * * 3" # Wednesday at 4am UTC (day before Dependabot)
+  workflow_dispatch:
 
 env:
   branch: "main"
   php-version: 8.2
   extensions: "mbstring, sodium, zip"
-  safedir: "${{ github.workspace }}:/app"
   dependencies: "highest"
   composeroptions: "--prefer-stable"
   workingdir: "upstream-configuration"
@@ -20,12 +20,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-
-      - name: Daily Checkout
+      - name: Checkout
         uses: actions/checkout@v4
         with:
           ref: ${{ github.head_ref }}
-          set-safe-directory: "${{ env.safedir }}"
 
       - name: Setup PHP Action
         uses: shivammathur/setup-php@2.31.1
@@ -33,44 +31,101 @@ jobs:
           php-version: "${{ env.php-version }}"
           extensions: "${{ env.extensions }}"
 
-      # Install dependencies using composer.json in src/Component/Config/
-      - name: Composer Install
+      # ROOT: Install and bump WordPress/Bedrock packages
+      - name: Install root dependencies
+        uses: "ramsey/composer-install@v3"
+        with:
+          dependency-versions: "${{ env.dependencies }}"
+
+      - name: Verify root composer.lock created
+        run: |
+          if [ -f "composer.lock" ]; then
+            echo "✅ Root composer.lock created successfully"
+          else
+            echo "❌ Root composer.lock was not created"
+            exit 1
+          fi
+
+      - name: Configure git safe directory for root
+        run: |
+          git config --global --add safe.directory "${{ github.workspace }}"
+
+      - name: Bump root composer.json
+        id: auto-commit-root
+        continue-on-error: true
+        uses: php-actions/composer@v6
+        with:
+          command: bump
+
+      - name: Check root changes
+        id: check-root-changes
+        run: |
+          if git diff --quiet composer.json; then
+            echo "No changes to root composer.json"
+            echo "changes_detected=false" >> $GITHUB_OUTPUT
+          else
+            echo "✅ Root composer.json was updated"
+            git diff composer.json
+            echo "changes_detected=true" >> $GITHUB_OUTPUT
+          fi
+
+      # UPSTREAM-CONFIGURATION: Install and bump plugin/theme packages
+      - name: Install upstream-configuration dependencies
         uses: "ramsey/composer-install@v3"
         with:
           working-directory: "${{ env.workingdir }}"
           dependency-versions: "${{ env.dependencies }}"
-        #   composer-options: "${{ env.composeroptions }}"
 
-      - name: Set upstream-configuration composer.json to new versions
+      - name: Verify upstream-configuration composer.lock created
+        run: |
+          if [ -f "${{ env.workingdir }}/composer.lock" ]; then
+            echo "✅ Upstream-configuration composer.lock created successfully"
+          else
+            echo "❌ Upstream-configuration composer.lock was not created"
+            exit 1
+          fi
+
+      - name: Bump upstream-configuration composer.json
         id: auto-commit-upstream
+        continue-on-error: true
         uses: php-actions/composer@v6
         with:
           command: bump
           working_dir: "${{ env.workingdir }}"
 
-      - name: Set root composer.json to new versions  
-        id: auto-commit-root
-        uses: php-actions/composer@v6
-        with:
-          command: bump
+      - name: Check upstream-configuration changes
+        id: check-upstream-changes
+        run: |
+          if git diff --quiet ${{ env.workingdir }}/composer.json; then
+            echo "No changes to upstream-configuration composer.json"
+            echo "changes_detected=false" >> $GITHUB_OUTPUT
+          else
+            echo "✅ Upstream-configuration composer.json was updated"
+            git diff ${{ env.workingdir }}/composer.json
+            echo "changes_detected=true" >> $GITHUB_OUTPUT
+          fi
 
-      - name: Clean secret management files
-        id: clean-files
+      # Clean up lock files and vendor directories before committing
+      - name: Clean up build artifacts
         run: |
           rm -rf \
-            ${{ env.safedir }}/vendor \
-            ${{ env.safedir }}/${{ env.workingdir }}/vendor \
-            ${{ env.safedir }}/composer.lock \
-            ${{ env.safedir }}/${{ env.workingdir }}/composer.lock \
+            vendor \
+            composer.lock \
+            ${{ env.workingdir }}/vendor \
             ${{ env.workingdir }}/composer.lock
 
-      - name: Commit files and push it
-        if: steps.auto-commit-upstream.outputs.changes_detected == 'true' || steps.auto-commit-root.outputs.changes_detected == 'true'
+      # Commit changes to both composer.json files
+      - name: Commit and push updates
+        if: steps.check-root-changes.outputs.changes_detected == 'true' || steps.check-upstream-changes.outputs.changes_detected == 'true'
         run: |
           git config --global user.email "jdelong@backofficethinking.com"
           git config --global user.name "Jeremy DeLong"
-          git add .
-          git commit -m "auto update"
+          git add composer.json ${{ env.workingdir }}/composer.json
+          git commit -m "chore: bump composer dependencies to current baseline"
           git push
 
-
+      - name: No updates needed
+        if: steps.check-root-changes.outputs.changes_detected != 'true' && steps.check-upstream-changes.outputs.changes_detected != 'true'
+        run: |
+          echo "ℹ️  All packages are already at their latest versions within constraints"
+          echo "No updates were needed this week"
