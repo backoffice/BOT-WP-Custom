@@ -45,7 +45,7 @@
         "wpackagist-plugin/wp-cfm": "^1.7.10",
         "wpackagist-plugin/wp-megamenu": "^1.4.2",
         "wpackagist-plugin/wp-smushit": "^3.24.0",
-        "wpackagist-theme/twentynineteen": "^1.9",
+        "wpackagist-theme/twentynineteen": "^3.2",
         "backoffice/advanced-custom-fields-pro": "^6.6.2",
         "backoffice/pt-content-views-pro": "^7.1",
         "backoffice/search-filter-pro": "^2.5.16",
