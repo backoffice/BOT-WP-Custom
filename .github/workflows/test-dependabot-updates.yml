@@ -4,6 +4,8 @@ on:
   pull_request:
     branches: [main]
     types: [opened, synchronize, reopened]
+  workflow_dispatch:  # ADD THIS LINE
+
 
 env:
   php-version: 8.2
@@ -12,7 +14,7 @@ env:
 jobs:
   test-composer-updates:
     # Only run this workflow for dependabot PRs
-    if: github.actor == 'dependabot[bot]'
+    if: github.actor == 'dependabot[bot]' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     
     steps:
