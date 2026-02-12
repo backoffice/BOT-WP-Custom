@@ -10,7 +10,7 @@ updates:
     schedule:
       interval: "weekly"
       day: "thursday"
-      time: "15:30"  # Change from "04:00" to "15:00 for testing changes."
+      time: "15:50"  # Change from "04:00" to "15:00 for testing changes."
       timezone: "America/New_York"
     versioning-strategy: increase
     groups:
@@ -33,7 +33,7 @@ updates:
     schedule:
       interval: "weekly"
       day: "thursday"
-      time: "15:30"  # Change from "04:00" to "15:00 for testing changes."
+      time: "15:50"  # Change from "04:00" to "15:00 for testing changes."
       timezone: "America/New_York"
     versioning-strategy: increase
     groups:
