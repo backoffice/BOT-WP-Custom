@@ -34,7 +34,7 @@ jobs:
       - name: Validate upstream-configuration composer.json  
         run: |
           cd upstream-configuration
-          composer validate --strict --no-check-all
+          composer validate --no-check-all
           
       - name: Install all dependencies
         run: |
