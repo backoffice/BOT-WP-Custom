@@ -3,11 +3,13 @@ name: Auto-merge Dependabot PRs
 on:
   pull_request:
     types: [opened, reopened, synchronize, ready_for_review]
+  workflow_dispatch:  # ADD THIS LINE
 
 jobs:
   auto-merge:
     # Only run on dependabot PRs
-    if: github.actor == 'dependabot[bot]' && github.event.pull_request.draft == false
+    if: (github.actor == 'dependabot[bot]' && github.event.pull_request.draft == false) || github.event_name == 'workflow_dispatch'
+
     runs-on: ubuntu-latest
     
     permissions:
