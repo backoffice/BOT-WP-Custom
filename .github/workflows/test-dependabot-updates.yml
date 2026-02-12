@@ -3,7 +3,6 @@ name: Test Dependabot Updates
 on:
   pull_request:
     branches: [main]
-    # Only run on dependabot PRs
     types: [opened, synchronize, reopened]
 
 env:
@@ -20,7 +19,6 @@ jobs:
       - name: Checkout PR code
         uses: actions/checkout@v4
         with:
-          # Check out the PR branch, not main
           ref: ${{ github.head_ref }}
           
       - name: Setup PHP
@@ -28,69 +26,59 @@ jobs:
         with:
           php-version: "${{ env.php-version }}"
           extensions: "${{ env.extensions }}"
-          # Increase memory limit for composer operations
           ini-values: memory_limit=512M
           
-      - name: Validate main composer.json
+      - name: Validate root composer.json
         run: composer validate --strict --no-check-all
         
       - name: Validate upstream-configuration composer.json  
         run: |
           cd upstream-configuration
-          # Only validate JSON syntax and basic structure (ignore publish requirements)
-          php -r "
-            \$json = file_get_contents('composer.json');
-            \$data = json_decode(\$json, true);
-            if (json_last_error() !== JSON_ERROR_NONE) {
-              echo '❌ Invalid JSON: ' . json_last_error_msg();
-              exit(1);
-            }
-            if (!isset(\$data['require'])) {
-              echo '❌ Missing require section';
-              exit(1);
-            }
-            echo '✅ Upstream configuration composer.json is valid';
-          "
+          composer validate --strict --no-check-all
           
       - name: Install all dependencies
         run: |
-          # Install all dependencies - this includes both main and upstream-configuration
-          # since upstream-configuration is a path repository dependency
+          echo "Installing dependencies (root includes upstream-configuration as path dependency)..."
           composer install --no-dev --optimize-autoloader
           
       - name: Check for dependency conflicts
         run: |
-          echo "Checking for any composer dependency resolution issues..."
+          echo "Checking for composer dependency resolution issues..."
           composer check-platform-reqs
           echo "✅ All platform requirements satisfied"
           
       - name: Verify installation integrity
         run: |
-          # Check that composer install created the expected files
           echo "Verifying installation..."
           if [ ! -d "vendor" ]; then
-            echo "❌ Vendor directory was not created by composer install"
+            echo "❌ Vendor directory was not created"
             exit 1
           fi
-          
-          echo "✅ Installation completed successfully with all dependencies"
+          if [ ! -d "upstream-configuration/vendor" ]; then
+            echo "⚠️  Upstream-configuration vendor directory not found (expected - it's a path dependency)"
+          fi
+          echo "✅ Installation completed successfully"
 
       - name: Memory usage check
         run: |
-          echo "Checking memory usage during composer operations..."
+          echo "Checking memory usage..."
           php -r "echo 'Peak memory usage: ' . round(memory_get_peak_usage(true)/1024/1024, 2) . ' MB' . PHP_EOL;"
           
       - name: Security audit
+        continue-on-error: true
         run: |
-          echo "Running security audit on installed packages..."
-          composer audit --no-dev || echo "⚠️ Security audit found issues - review manually"
+          echo "Running security audit on root..."
+          composer audit --no-dev || echo "⚠️  Security audit found issues in root - review manually"
+          echo ""
+          echo "Running security audit on upstream-configuration..."
+          cd upstream-configuration
+          composer audit --no-dev || echo "⚠️  Security audit found issues in upstream-configuration - review manually"
      
-
       - name: Summary
         run: |
           echo "🎉 Dependabot update testing completed successfully!"
           echo ""
-          echo "✅ Composer files are valid"
+          echo "✅ Both composer.json files are valid"
           echo "✅ Dependencies install without conflicts" 
           echo "✅ Platform requirements are satisfied"
           echo "✅ No memory issues detected"
