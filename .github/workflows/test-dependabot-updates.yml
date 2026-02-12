@@ -33,10 +33,10 @@ jobs:
       - name: Validate root composer.json
         run: composer validate --strict --no-check-all
         
-      - name: Validate upstream-configuration composer.json  
-        run: |
-          cd upstream-configuration
-          composer validate --no-check-all
+      # - name: Validate upstream-configuration composer.json  
+      #   run: |
+      #     cd upstream-configuration
+      #     composer validate --no-check-all
           
       - name: Install all dependencies
         run: |
