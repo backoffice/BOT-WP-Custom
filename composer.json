@@ -102,7 +102,7 @@
     "extra": {
         "installer-paths": {
             "web/app/mu-plugins/{$name}/": ["type:wordpress-muplugin"],
-            "web/app/plugins/{$name}/": ["type:wordpress-plugin"],
+            "web/app/plugins/composer/{$name}/": ["type:wordpress-plugin"],
             "web/app/themes/{$name}/": ["type:wordpress-theme"]
         },
         "wordpress-install-dir": "web/wp",
@@ -127,6 +127,7 @@
         "post-install-cmd": "@maybe-create-symlinks",
         "pre-update-cmd": ["WordPressComposerManaged\\ComposerScripts::preUpdate"],
         "install-sage": ["bash ./private/scripts/helpers.sh install_sage"],
+        "maybe-add-symlinks": ["php private/scripts/SymlinkPlugins.php"],
         "maybe-create-symlinks": ["bash ./private/scripts/helpers.sh maybe_create_symlinks"],
         "lint": [
             "@lint:php",
