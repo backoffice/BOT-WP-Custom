@@ -124,10 +124,10 @@
         "classmap": ["upstream-configuration/scripts/ComposerScripts.php"]
     },
     "scripts": {
-        "post-install-cmd": "@maybe-create-symlinks",
+        "post-install-cmd": ["@maybe-create-symlinks","@maybe-add-symlinks"],
         "pre-update-cmd": ["WordPressComposerManaged\\ComposerScripts::preUpdate"],
         "install-sage": ["bash ./private/scripts/helpers.sh install_sage"],
-        "maybe-add-symlinks": ["php private/scripts/SymlinkPlugins.php"],
+        "maybe-add-symlinks": ["php ./private/scripts/SymlinkPlugins.php"],
         "maybe-create-symlinks": ["bash ./private/scripts/helpers.sh maybe_create_symlinks"],
         "lint": [
             "@lint:php",
