@@ -30,7 +30,7 @@
         "wpackagist-plugin/gdpr-cookie-compliance": "^5.0.11",
         "wpackagist-plugin/genesis-blocks": ">=3.1.8",
         "wpackagist-plugin/jetpack-boost": "^4.5.7",
-        "wpackagist-plugin/leadin": "^11.3.39",
+        "wpackagist-plugin/leadin": "^11.3.43",
         "wpackagist-plugin/lh-hsts": "^1.25",
         "wpackagist-plugin/modal-block": "^2.1",
         "wpackagist-plugin/pods": "^3.3.7",
@@ -38,7 +38,7 @@
         "wpackagist-plugin/redirection": "5.7.5",
         "wpackagist-plugin/search-filter": "^1.2.18",
         "wpackagist-plugin/svg-support": "^2.5.14",
-        "wpackagist-plugin/ultimate-post": "^5.0.9",
+        "wpackagist-plugin/ultimate-post": "^5.0.11",
         "wpackagist-plugin/wordpress-seo": ">=27.1.1",
         "wpackagist-plugin/wp-megamenu": "^1.4.2",
         "wpackagist-plugin/wp-smushit": "^3.24.0",
@@ -52,7 +52,7 @@
         "wpackagist-plugin/mailin": "3.3.2",
         "wpackagist-plugin/weglot": "5.4",
         "wpackagist-plugin/wordfence": "8.1.4",
-        "wpackagist-plugin/google-site-kit": "1.173.0"
+        "wpackagist-plugin/google-site-kit": "1.174.0"
     },
     "config": {
         "allow-plugins": true,
