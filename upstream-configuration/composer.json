@@ -34,7 +34,6 @@
         "wpackagist-plugin/lh-hsts": "^1.25",
         "wpackagist-plugin/modal-block": "^2.1",
         "wpackagist-plugin/pods": "^3.3.8",
-        "wpackagist-plugin/popup-anything-on-click": "^2.9.1",
         "wpackagist-plugin/redirection": "5.7.5",
         "wpackagist-plugin/search-filter": "^1.2.18",
         "wpackagist-plugin/svg-support": "^2.5.14",
