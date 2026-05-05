@@ -50,7 +50,7 @@
         "wpackagist-plugin/mailin": "3.3.4",
         "wpackagist-plugin/weglot": "5.5",
         "wpackagist-plugin/wordfence": "8.2.0",
-        "wpackagist-plugin/google-site-kit": "1.177.0"
+        "wpackagist-plugin/google-site-kit": "1.178.0"
     },
     "config": {
         "allow-plugins": true,
