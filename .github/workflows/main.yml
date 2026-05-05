@@ -1,11 +1,12 @@
 # Automated weekly composer baseline updates
+# Switching now to daily updates - JDD.
 # Sets baseline versions in both root and upstream-configuration before Dependabot runs
 # Dependabot will then propose updates from these baselines
 name: Weekly Composer Bump
 
 on:
   schedule:
-   - cron: "0 4 * * 3" # Wednesday at 4am UTC (day before Dependabot)
+   - cron: "0 12 * * *" # Wednesday at 4am UTC (day before Dependabot)
   workflow_dispatch:
 
 env:
