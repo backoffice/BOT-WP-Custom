@@ -26,7 +26,7 @@
         "wpackagist-plugin/duracelltomi-google-tag-manager": "^1.22.3",
         "wpackagist-plugin/enable-media-replace": "4.1.9",
         "wpackagist-plugin/filebird": "^6.5.2",
-        "wpackagist-plugin/font-awesome": "^5.1.4",
+        "wpackagist-plugin/font-awesome": "^5.1.5",
         "wpackagist-plugin/gdpr-cookie-compliance": "^5.0.12",
         "wpackagist-plugin/genesis-blocks": ">=3.1.8",
         "wpackagist-plugin/jetpack-boost": "^4.5.9",
@@ -37,7 +37,7 @@
         "wpackagist-plugin/redirection": "5.7.5",
         "wpackagist-plugin/search-filter": "^1.2.18",
         "wpackagist-plugin/svg-support": "^2.5.14",
-        "wpackagist-plugin/ultimate-post": "^5.0.17",
+        "wpackagist-plugin/ultimate-post": "^5.0.18",
         "wpackagist-plugin/wordpress-seo": ">=27.5",
         "wpackagist-plugin/wp-smushit": "^4.0.3",
         "wpackagist-theme/twentynineteen": "^3.2",
@@ -49,7 +49,7 @@
         "wpackagist-plugin/cleantalk-spam-protect": "6.78",
         "wpackagist-plugin/mailin": "3.3.4",
         "wpackagist-plugin/weglot": "5.5",
-        "wpackagist-plugin/wordfence": "8.2.0",
+        "wpackagist-plugin/wordfence": "8.2.1",
         "wpackagist-plugin/google-site-kit": "1.178.0"
     },
     "config": {
