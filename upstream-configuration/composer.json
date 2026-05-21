@@ -21,7 +21,7 @@
         "wpackagist-plugin/akismet": "^5.7",
         "wpackagist-plugin/autoptimize": "^3.1.15",
         "wpackagist-plugin/better-search-replace": ">=1.4.10",
-        "wpackagist-plugin/content-views-query-and-display-post-page": ">=4.3",
+        "wpackagist-plugin/content-views-query-and-display-post-page": ">=4.4",
         "wpackagist-plugin/duplicate-page": "^4.5.9",
         "wpackagist-plugin/duracelltomi-google-tag-manager": "^1.22.3",
         "wpackagist-plugin/enable-media-replace": "4.1.9",
@@ -49,7 +49,7 @@
         "wpackagist-plugin/mailin": "3.3.4",
         "wpackagist-plugin/weglot": "5.5",
         "wpackagist-plugin/wordfence": "8.2.2",
-        "wpackagist-plugin/google-site-kit": "1.178.0"
+        "wpackagist-plugin/google-site-kit": "1.179.0"
     },
     "config": {
         "allow-plugins": true,
