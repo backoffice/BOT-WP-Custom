@@ -43,13 +43,13 @@
         "backoffice/advanced-custom-fields-pro": "^6.8.1",
         "backoffice/pt-content-views-pro": "^7.1",
         "backoffice/search-filter-pro": "^3.2.3",
-        "wpackagist-plugin/ninja-forms": "3.14.5",
-        "wpackagist-plugin/ga-google-analytics": "20260421",
-        "wpackagist-plugin/cleantalk-spam-protect": "6.80",
-        "wpackagist-plugin/mailin": "3.3.4",
-        "wpackagist-plugin/weglot": "5.5",
-        "wpackagist-plugin/wordfence": "8.2.2",
-        "wpackagist-plugin/google-site-kit": "1.179.0"
+        "wpackagist-plugin/ninja-forms": "^3.14.5",
+        "wpackagist-plugin/ga-google-analytics": "^20260421",
+        "wpackagist-plugin/cleantalk-spam-protect": "^6.80",
+        "wpackagist-plugin/mailin": "^3.3.4",
+        "wpackagist-plugin/weglot": "^5.5",
+        "wpackagist-plugin/wordfence": "^8.2.2",
+        "wpackagist-plugin/google-site-kit": "^1.179.0"
     },
     "config": {
         "allow-plugins": true,
