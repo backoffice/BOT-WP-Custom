@@ -34,7 +34,7 @@
         "wpackagist-plugin/lh-hsts": "^1.25",
         "wpackagist-plugin/modal-block": "^2.1",
         "wpackagist-plugin/pods": "^3.3.9",
-        "wpackagist-plugin/redirection": "5.8.1",
+        "wpackagist-plugin/redirection": "5.9.0",
         "wpackagist-plugin/search-filter": "^1.2.18",
         "wpackagist-plugin/svg-support": "^2.5.16",
         "wpackagist-plugin/wordpress-seo": ">=28.0",
