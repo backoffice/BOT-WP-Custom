@@ -7,6 +7,10 @@ on:
   workflow_dispatch:  # ADD THIS LINE
 
 
+
+permissions:
+  contents: read
+  pull-requests: write
 env:
   php-version: 8.2
   extensions: "mbstring, sodium, zip"

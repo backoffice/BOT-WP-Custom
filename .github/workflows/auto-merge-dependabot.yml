@@ -5,6 +5,10 @@ on:
     types: [opened, reopened, synchronize, ready_for_review]
   workflow_dispatch:  # ADD THIS LINE
 
+
+permissions:
+  contents: write
+  pull-requests: write
 jobs:
   auto-merge:
     # Only run on dependabot PRs
@@ -22,10 +26,10 @@ jobs:
           echo "Enabling auto-merge for dependabot PR #${{ github.event.pull_request.number }}"
           gh pr merge ${{ github.event.pull_request.number }} --auto --squash --repo ${{ github.repository }}
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
           
       - name: Add auto-merge comment
         run: |
           gh pr comment ${{ github.event.pull_request.number }} --body "🤖 Auto-merge has been enabled for this dependabot PR. It will merge automatically once all required status checks pass." --repo ${{ github.repository }}
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}

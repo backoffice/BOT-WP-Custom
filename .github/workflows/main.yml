@@ -9,6 +9,10 @@ on:
    - cron: "0 12 * * *" # Wednesday at 4am UTC (day before Dependabot)
   workflow_dispatch:
 
+
+permissions:
+  contents: write
+  pull-requests: write
 env:
   branch: "main"
   php-version: 8.2
