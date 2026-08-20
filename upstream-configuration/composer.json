@@ -37,7 +37,7 @@
         "wpackagist-plugin/svg-support": "^2.6.1",
         "wpackagist-plugin/wordpress-seo": ">=28.2",
         "wpackagist-plugin/wp-smushit": "^4.3.0",
-        "wpackagist-theme/twentynineteen": "^3.3",
+        "wpackagist-theme/twentynineteen": "^3.4",
         "backoffice/advanced-custom-fields-pro": "^6.8.1",
         "backoffice/pt-content-views-pro": "^7.1",
         "backoffice/search-filter-pro": "^3.2.3",
