@@ -30,7 +30,7 @@
         "wpackagist-plugin/gdpr-cookie-compliance": "^5.1.0",
         "wpackagist-plugin/genesis-blocks": ">=3.1.11",
         "wpackagist-plugin/jetpack-boost": "^4.7.0",
-        "wpackagist-plugin/leadin": "^11.3.71",
+        "wpackagist-plugin/leadin": "^11.3.73",
         "wpackagist-plugin/pods": "^3.3.9",
         "wpackagist-plugin/redirection": "5.10.0",
         "wpackagist-plugin/search-filter": "^1.2.18",
@@ -41,13 +41,13 @@
         "backoffice/advanced-custom-fields-pro": "^6.8.1",
         "backoffice/pt-content-views-pro": "^7.1",
         "backoffice/search-filter-pro": "^3.2.3",
-        "wpackagist-plugin/ninja-forms": "^3.15.2",
+        "wpackagist-plugin/ninja-forms": "^3.15.3",
         "wpackagist-plugin/ga-google-analytics": "^20260810",
         "wpackagist-plugin/cleantalk-spam-protect": "^6.87",
         "wpackagist-plugin/mailin": "^3.3.5",
         "wpackagist-plugin/weglot": "^6.2",
-        "wpackagist-plugin/wordfence": "^9.0.0",
-        "wpackagist-plugin/google-site-kit": "^1.186.0"
+        "wpackagist-plugin/wordfence": "^9.0.1",
+        "wpackagist-plugin/google-site-kit": "^1.187.0"
     },
     "config": {
         "allow-plugins": true,
